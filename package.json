@@ -10,7 +10,7 @@
 		"url": "https://github.com/mattkenefick/vscode-css-alphabetize/issues"
 	},
 	"categories": [
-		"CSS",
+        "Formatters",
 		"Other"
 	],
 	"contributes": {
@@ -22,7 +22,7 @@
 		],
 		"keybindings": [
 			{
-				"command": "extension.css-alphabetize",
+				"command": "css-alphabetize.alphabetize",
 				"key": "shift+alt+a",
 				"mac": "shift+alt+a"
 			}
@@ -55,6 +55,10 @@
 	},
 	"homepage": "https://github.com/mattkenefick/vscode-css-alphabetize",
 	"icon": "assets/logo.png",
+    "keywords": [
+        "css", "sass", "scss", "less", "stylesheets",
+        "formatting", "formatter", "alphabet", "alphabetize"
+    ],
 	"license": "MIT",
 	"main": "./dist/extension.js",
 	"name": "css-alphabetize",

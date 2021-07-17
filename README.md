@@ -29,6 +29,12 @@ Rather than:
     background: blue;
 ```
 
+
+## Configuration
+
+You can adjust the brackets to use this plugin more generically. It defaults to curly braces `{` / `}` but could be adjusted to anything you want deemed as an opening / closing.
+
+
 ## Key Bindings
 
 `shift+cmd+a` will alphabetize your file / selection
