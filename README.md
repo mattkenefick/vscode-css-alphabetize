@@ -11,21 +11,28 @@ Alphabetizes properties within your CSS/SASS files.
 ![CSS Alphabetize example](./assets/css-alphabetize.gif)
 
 
-## Example
-
-@todo
-
-## Configuration
-
-@todo
-
 ## Usage
 
-@todo
+Defaults to alphabetizing the entire file's properties, but can also isolate to selections. If you want to alphabetize a selection, make sure you select an entire block. e.g.
+
+```
+div {
+    color: red;
+    background: blue;
+}
+```
+
+Rather than:
+
+```
+    color: red;
+    background: blue;
+```
 
 ## Key Bindings
 
-@todo
+`shift+cmd+a` will alphabetize your file / selection
+
 
 ## Release Notes
 

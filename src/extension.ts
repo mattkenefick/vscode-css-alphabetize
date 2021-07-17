@@ -97,14 +97,14 @@ export function activate(context: vscode.ExtensionContext) {
         const tab: string = ' '.repeat(indentation);
 
         // Extract properties from CSS string and sort them
-        const matches = [...properties.matchAll(/([a-zA-Z\-]+)\s{0,}:[^;\n}]+([;\n}])/gm)].map(x => x[0]);
+        const matches = [...properties.matchAll(/([$_a-zA-Z\-]+)\s{0,}:[^;\n}]+([;\n}])/gm)].map(x => x[0].trim());
         matches.sort();
 
         // Erase all properties, retain our #key markers at end of line
         matches.forEach(match => properties = properties.replace(match, ''));
 
         // Newly created CSS property block
-        const block: string = tab + matches.join('\n' + tab) + '\n' + properties;
+        const block: string = tab + matches.join('\n' + tab).trim() + (properties ? '\n' + properties : '');
 
         // Return block and indentation information
         return { block, indentation, tab };
@@ -136,7 +136,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         // Iterate through key markers
         do {
-            if (match = css.match(/(?:#)(\d)/)) {
+            if (match = css.match(/(?:#)(\d+)/)) {
                 const index: number = parseFloat(match[1]);
                 const props = sortProperties(blocks[index]);
                 const closingIndentation = ' '.repeat(Math.max(0, props.indentation - identifiedIndentation));
@@ -145,7 +145,7 @@ export function activate(context: vscode.ExtensionContext) {
         } while (match);
 
         // Consecutive empty lines
-        css = replaceAll(css, /(?:\s+\n){1,}(\s+\n)/gm, '$1\n');
+        css = replaceAll(css, /(?:\s+\n){1,}(\s+\n)/gm, '$1');
 
         // Empty lines with a bracket
         css = replaceAll(css, /(?:\s+\n){1,}( +)?}/gm, '\n$1}');
@@ -160,15 +160,18 @@ export function activate(context: vscode.ExtensionContext) {
         let selections: vscode.Selection[] | undefined = editor?.selections;
 
         // Default to the entire document
-        if (selections && selections.length === 0 && selections[0].start.line === selections[0].end.line) {
+        if (selections && selections.length <= 1 && selections[0].start.line === selections[0].end.line) {
             selections.unshift(new vscode.Selection(
                 new vscode.Position(0, 0),
                 new vscode.Position(99999, 9999),
             ));
+
+            selections.pop();
         }
 
         // Exit if we don't have the references we need
         if (!editor || !document || !selections) {
+            console.warn('Exiting because we dont have something');
             return;
         }
 
