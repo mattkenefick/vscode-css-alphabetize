@@ -78,5 +78,5 @@
 		"lint": "eslint src --ext ts",
 		"test": "node ./out/test/runTest.js"
 	},
-	"version": "0.1.0"
+	"version": "0.1.1"
 }

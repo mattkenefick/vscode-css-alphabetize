@@ -37,10 +37,14 @@ You can adjust the brackets to use this plugin more generically. It defaults to 
 
 ## Key Bindings
 
-`shift+cmd+a` will alphabetize your file / selection
+`shift+alt+a` will alphabetize your file / selection
 
 
 ## Release Notes
+
+### 0.1.1
+
+Update icon + key command in README
 
 ### 0.0.1
 
