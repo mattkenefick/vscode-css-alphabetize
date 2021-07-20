@@ -24,16 +24,16 @@ export default function sortCssBlock(css: string, openingBracket: string = '{', 
         blocks.push(block);
 
         // Save position marker that we can defer to later for replacement
-        css = css.replace(`{${block}}`, `#${key}`);
+        css = css.replace(`{${block}}`, `#!${key}`);
     }
 
     // Iterate through key markers
     do {
-        if (match = css.match(/(?:#)(\d+)/)) {
+        if (match = css.match(/(?:#!)(\d+)/)) {
             const index: number = parseFloat(match[1]);
             const props = sortProperties(blocks[index]);
             const closingIndentation = ' '.repeat(Math.max(0, props.indentation - identifiedIndentation));
-            css = css.replace('#' + match[1], `{\n${props.block}\n${closingIndentation}}\n\n`);
+            css = css.replace('#!' + match[1], `{\n${props.block}\n${closingIndentation}}`);
         }
     } while (match);
 
