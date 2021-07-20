@@ -5,15 +5,17 @@ suite('Replace All', () => {
 	test('Character replacement', () => {
         let input: string = 'abcdefffg';
         let output: string = replaceAll(input, 'f', 'm');
+        const expect: string = 'abcdemmmg';
 
-		assert.strictEqual(output, 'abcdemmmg');
+		assert.strictEqual(output, expect);
 	});
 
 
 	test('Regex word replacement', () => {
-        let input: string = 'abcde test test test g';
-        let output: string = replaceAll(input, /(test\s?)/gm, '');
+        const input: string = 'abcde test test test g';
+        const output: string = replaceAll(input, /(test\s?)/gm, '');
+        const expect: string = 'abcde g';
 
-		assert.strictEqual(output, 'abcde g');
+		assert.strictEqual(output, expect);
 	});
 });
