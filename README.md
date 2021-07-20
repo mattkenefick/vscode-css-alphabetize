@@ -42,6 +42,14 @@ You can adjust the brackets to use this plugin more generically. It defaults to 
 
 ## Release Notes
 
+### 0.2.0
+
+- Break out functions into individual files
+- Add a couple tests
+- Fixes for superfluous line additions
+- Fixe for direct descendant in SASS blocks
+- Changed replacement marker to shebang
+
 ### 0.1.1
 
 Update icon + key command in README
