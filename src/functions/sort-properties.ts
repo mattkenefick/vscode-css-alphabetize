@@ -29,6 +29,9 @@
     // Erase all properties, retain our #key markers at end of line
     matches.forEach(match => properties = properties.replace(match, ''));
 
+    // Erase double lines from
+    properties = properties.replaceAll(/\n\s+$/gm, '');
+
     // Newly created CSS property block
     const block: string = tab + matches.join('\n' + tab).trim() + (properties ? '\n' + properties : '');
 
