@@ -13,8 +13,8 @@ export function activate(context: vscode.ExtensionContext) {
     // region: Commands
     // ---------------------------------------------------------------------------
 
-	disposable = vscode.commands.registerCommand('css-alphabetize.alphabetize', () => alphabetize());
-	context.subscriptions.push(disposable);
+    disposable = vscode.commands.registerCommand('css-alphabetize.alphabetize', () => alphabetize());
+    context.subscriptions.push(disposable);
 
     // endregion: Commands
 
