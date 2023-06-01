@@ -1,7 +1,4 @@
 {
-	"activationEvents": [
-		"onCommand:css-alphabetize.alphabetize"
-	],
 	"author": {
 		"email": "matt@polymermallard.com",
 		"name": "Matt Kenefick"
@@ -10,7 +7,7 @@
 		"url": "https://github.com/mattkenefick/vscode-css-alphabetize/issues"
 	},
 	"categories": [
-        "Formatters",
+		"Formatters",
 		"Other"
 	],
 	"contributes": {
@@ -18,6 +15,10 @@
 			{
 				"command": "css-alphabetize.alphabetize",
 				"title": "CSS/SASS: Alphabetize properties"
+			},
+			{
+				"command": "css-alphabetize.alphabetize",
+				"title": "CSS Sort Properties"
 			}
 		],
 		"keybindings": [
@@ -47,7 +48,7 @@
 	},
 	"displayName": "CSS Alphabetize",
 	"engines": {
-		"vscode": "^1.57.0"
+		"vscode": "^1.75.0"
 	},
 	"galleryBanner": {
 		"color": "#d9d9d9",
@@ -55,10 +56,17 @@
 	},
 	"homepage": "https://github.com/mattkenefick/vscode-css-alphabetize",
 	"icon": "assets/logo.png",
-    "keywords": [
-        "css", "sass", "scss", "less", "stylesheets",
-        "formatting", "formatter", "alphabet", "alphabetize"
-    ],
+	"keywords": [
+		"css",
+		"sass",
+		"scss",
+		"less",
+		"stylesheets",
+		"formatting",
+		"formatter",
+		"alphabet",
+		"alphabetize"
+	],
 	"license": "MIT",
 	"main": "./dist/extension.js",
 	"name": "css-alphabetize",

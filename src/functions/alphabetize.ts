@@ -1,7 +1,6 @@
-
 import * as vscode from 'vscode';
 import sortCssBlock from './sort-css-block';
-import VsCodeHelper from '../utility/vscode-helper';
+import vsCodeHelper from '../utility/vscode-helper';
 
 /**
  * Alphabetize CSS properties in VSCode environment
@@ -13,10 +12,10 @@ export default function alphabetize() {
     let selections: vscode.Selection[] = editor?.selections || [];
 
     // Default to the entire document
-    if (VsCodeHelper.nothingIsSelected()) {
-        selections = VsCodeHelper.selectAll();
+    if (vsCodeHelper.nothingIsSelected()) {
+        selections = vsCodeHelper.selectAll();
     }
 
     // Filter all selections through CSS Block function
-    VsCodeHelper.replaceSelections(selections, sortCssBlock);
+    vsCodeHelper.replaceSelections(selections, sortCssBlock);
 }

@@ -10,7 +10,6 @@ suite('Replace All', () => {
 		assert.strictEqual(output, expect);
 	});
 
-
 	test('Regex word replacement', () => {
         const input: string = 'abcde test test test g';
         const output: string = replaceAll(input, /(test\s?)/gm, '');
