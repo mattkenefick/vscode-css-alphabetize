@@ -24,7 +24,16 @@
     // Extract properties from CSS string and sort them
     // const matches = [...properties.matchAll(/([$_a-zA-Z\-]+)\s{0,}:[^;\n}]+([^,][;\n}])/gm)].map(x => x[0].trim());
     const matches = [...properties.matchAll(/([$_a-zA-Z\-]+)\s{0,}:\s*(.+?);\s/gm)].map(x => x[0].trim());
-    matches.sort();
+
+	// Sort properties alphabetically but put things like "border"
+	// before "border-left"
+	matches.sort((a: string, b: string) => {
+		a = a.split(':')[0];
+		b = b.split(':')[0];
+		a = a.toLowerCase().replace(/[^a-z-]+/g, '');
+		b = b.toLowerCase().replace(/[^a-z-]+/g, '');
+		return a.localeCompare(b);
+	});
 
     // Erase all properties, retain our #key markers at end of line
     matches.forEach(match => properties = properties.replace(match, ''));

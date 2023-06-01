@@ -1,6 +1,5 @@
 # CSS Alphabetize
 
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/mattkenefick/vscode-css-alphabetize)
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/polymermallard.css-alphabetize.svg)](https://marketplace.visualstudio.com/items?itemName=polymermallard.css-alphabetize)
 [![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/polymermallard.css-alphabetize.svg)](https://marketplace.visualstudio.com/items?itemName=polymermallard.css-alphabetize)
 [![Backers on Patreon](https://img.shields.io/badge/backer-Patreon-orange.svg)](https://www.patreon.com/mattkenefick)
@@ -37,6 +36,10 @@ You can adjust the brackets to use this plugin more generically. It defaults to 
 `shift+alt+a` will alphabetize your file / selection
 
 ## Release Notes
+
+### 0.3.1
+
+-   Sort margin before margin-left
 
 ### 0.3.0
 
