@@ -1,4 +1,3 @@
-
 /**
  * Identify, split, and sort CSS properties from within a string. Our
  * parameters are key/values split by a colon, the delimited by either
@@ -23,7 +22,8 @@
     const tab: string = ' '.repeat(indentation);
 
     // Extract properties from CSS string and sort them
-    const matches = [...properties.matchAll(/([$_a-zA-Z\-]+)\s{0,}:[^;\n}]+([^,][;\n}])/gm)].map(x => x[0].trim());
+    // const matches = [...properties.matchAll(/([$_a-zA-Z\-]+)\s{0,}:[^;\n}]+([^,][;\n}])/gm)].map(x => x[0].trim());
+    const matches = [...properties.matchAll(/([$_a-zA-Z\-]+)\s{0,}:\s*(.+?);\s/gm)].map(x => x[0].trim());
     matches.sort();
 
     // Erase all properties, retain our #key markers at end of line
