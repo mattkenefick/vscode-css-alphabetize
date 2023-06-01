@@ -1,0 +1,13 @@
+.b-faq {
+	.c-section-header {
+		&.__title {
+			font-size: 3.2rem;
+			background-color: var(--color-white);
+		}
+	}
+
+	&.__item-title {
+		font-size: 1.8rem;
+		background-color: #fff;
+	}
+}
