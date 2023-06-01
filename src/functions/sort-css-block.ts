@@ -1,4 +1,3 @@
-
 import findNearestBlock from './find-nearest-block';
 import replaceAll from './replace-all';
 import sortProperties from './sort-properties';
@@ -9,11 +8,18 @@ import sortProperties from './sort-properties';
  * @todo Improve our post cleanup and autoformatting
  *
  * @param string css
+ * @param string openingBracket
+ * @param string closingBracket
  * @return string
  */
-export default function sortCssBlock(css: string, openingBracket: string = '{', closingBracket: string = '}'): string {
+export default function sortCssBlock(
+	css: string,
+	openingBracket: string = '{',
+	closingBracket: string = '}',
+): string {
     let blocks = [];
     let match;
+	let previousCss;
     const identifiedIndentation = (css.match(/(^ +)/m) || ['    '])[0].length;
 
     // Extract all blocks into an array
@@ -37,11 +43,16 @@ export default function sortCssBlock(css: string, openingBracket: string = '{', 
         }
     } while (match);
 
-    // Consecutive empty lines
-    css = replaceAll(css, /(?:\s+\n){1,}(\s+\n)/gm, '$1');
+	do {
+		// Consecutive empty lines
+		css = replaceAll(css, /(?:\s+\n){1,}(\s+\n)/gm, '$1');
 
-    // Empty lines with a bracket
-    css = replaceAll(css, /(?:\s+\n){1,}( +)?}/gm, '\n$1}');
+		// Remove additional lines between blocks (issue #1)
+		css = replaceAll(css, /((?:(.*) {))\n( +)(\n(?:(.*) {))/gm, '$1$4');
+
+		// Empty lines with a bracket
+		css = replaceAll(css, /(?:\s+\n){1,}( +)?}/gm, '\n$1}');
+	} while (css !== previousCss && (previousCss = css));
 
     return css;
 }
