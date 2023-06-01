@@ -54,5 +54,8 @@ export default function sortCssBlock(
 		css = replaceAll(css, /(?:\s+\n){1,}( +)?}/gm, '\n$1}');
 	} while (css !== previousCss && (previousCss = css));
 
+	// Empty lines trim
+	css = replaceAll(css, /^\s+$/gm, '');
+
     return css;
 }
