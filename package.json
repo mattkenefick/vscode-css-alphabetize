@@ -1,4 +1,7 @@
 {
+	"activationEvents": [
+		"*"
+	],
 	"author": {
 		"email": "matt@polymermallard.com",
 		"name": "Matt Kenefick"
