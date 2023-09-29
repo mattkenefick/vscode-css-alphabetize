@@ -14,11 +14,7 @@
 		"commands": [
 			{
 				"command": "css-alphabetize.alphabetize",
-				"title": "CSS/SASS: Alphabetize properties"
-			},
-			{
-				"command": "css-alphabetize.alphabetize",
-				"title": "CSS Sort Properties"
+				"title": "CSS/SASS: Sort Properties (Alphabetize)"
 			}
 		],
 		"keybindings": [
@@ -87,5 +83,5 @@
 		"lint": "eslint src --ext ts",
 		"test": "node ./out/test/runTest.js"
 	},
-	"version": "0.3.1"
+	"version": "0.3.3"
 }
