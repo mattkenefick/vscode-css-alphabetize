@@ -37,6 +37,11 @@ You can adjust the brackets to use this plugin more generically. It defaults to 
 
 ## Release Notes
 
+### 0.4.0
+
+-   Sort @include for SCSS
+-   Ignore three types of comment blocks when sorting CSS
+
 ### 0.3.1
 
 -   Sort margin before margin-left
