@@ -1,70 +1,72 @@
 import * as vscode from 'vscode';
 
+const output = vscode.window.createOutputChannel('CSS Alphabetize');
+
 /**
  * @class VsCodeHelper
  */
-export default class VsCodeHelper
-{
-    /**
-     * Check if nothing is selected; normal caret position
-     *
-     * @return boolean
-     */
-    public static nothingIsSelected(): boolean {
-        const editor = vscode.window.activeTextEditor;
-        const document: vscode.TextDocument | undefined = editor?.document;
-        let selections: vscode.Selection[] | undefined = editor?.selections;
+export default class VsCodeHelper {
+	/**
+	 * @param string message
+	 * @return void
+	 */
+	public static log(message: string): void {
+		output.appendLine(message);
+	}
 
-        // Default to the entire document
-        return !!(selections
-            && selections.length <= 1
-            && selections[0].start.line === selections[0].end.line);
-    }
+	/**
+	 * Check if nothing is selected; normal caret position
+	 *
+	 * @return boolean
+	 */
+	public static nothingIsSelected(): boolean {
+		const editor = vscode.window.activeTextEditor;
+		const document: vscode.TextDocument | undefined = editor?.document;
+		let selections: vscode.Selection[] | undefined = editor?.selections;
 
-    /**
-     * Replace selections with string or functio
-     *
-     * @param vscode.Selection[] selections
-     * @param string|function replacement
-     * @return void
-     */
-    public static replaceSelections(selections: vscode.Selection[], replacement: any): void {
-        const editor = vscode.window.activeTextEditor;
-        const document: vscode.TextDocument | undefined = editor?.document;
+		// Default to the entire document
+		return !!(selections && selections.length <= 1 && selections[0].start.line === selections[0].end.line);
+	}
 
-        // Exit if we don't have the references we need
-        if (!editor || !document || !selections) {
-            console.warn('Exiting because we dont have something');
-            return;
-        }
+	/**
+	 * Replace selections with string or functio
+	 *
+	 * @param vscode.Selection[] selections
+	 * @param string|function replacement
+	 * @return void
+	 */
+	public static replaceSelections(selections: vscode.Selection[], replacement: any): void {
+		const editor = vscode.window.activeTextEditor;
+		const document: vscode.TextDocument | undefined = editor?.document;
 
-        // Iterate and replace selections
-        selections.forEach(selection => {
-            const range: vscode.Range = new vscode.Range(selection.start, selection.end);
-            const text: string = document.getText(range);
-            const replacementStr: string = typeof(replacement) === 'string'
-                ? replacement
-                : replacement(text);
+		// Exit if we don't have the references we need
+		if (!editor || !document || !selections) {
+			console.warn('Exiting because we dont have something');
+			return;
+		}
 
-            editor.edit((editBuilder: vscode.TextEditorEdit): void => {
-                editBuilder.replace(selection, replacementStr);
-            });
-        });
-    }
+		// Iterate and replace selections
+		selections.forEach((selection) => {
+			const range: vscode.Range = new vscode.Range(selection.start, selection.end);
+			const text: string = document.getText(range);
+			const replacementStr: string = typeof replacement === 'string' ? replacement : replacement(text);
 
-    /**
-     * mk: I'm sure there's a better way to do this.
-     *
-     * @return vscode.Selection[]
-     */
-    public static selectAll(): vscode.Selection[] {
-        let selections: vscode.Selection[] = [];
+			editor.edit((editBuilder: vscode.TextEditorEdit): void => {
+				editBuilder.replace(selection, replacementStr);
+			});
+		});
+	}
 
-        selections.push(new vscode.Selection(
-            new vscode.Position(0, 0),
-            new vscode.Position(99999, 9999),
-        ));
+	/**
+	 * mk: I'm sure there's a better way to do this.
+	 *
+	 * @return vscode.Selection[]
+	 */
+	public static selectAll(): vscode.Selection[] {
+		let selections: vscode.Selection[] = [];
 
-        return selections;
-    }
+		selections.push(new vscode.Selection(new vscode.Position(0, 0), new vscode.Position(99999, 9999)));
+
+		return selections;
+	}
 }

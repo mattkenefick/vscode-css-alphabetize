@@ -8,14 +8,14 @@ import vsCodeHelper from '../utility/vscode-helper';
  * @return void
  */
 export default function alphabetize() {
-    const editor = vscode.window.activeTextEditor;
-    let selections: vscode.Selection[] = editor?.selections || [];
+	const editor = vscode.window.activeTextEditor;
+	let selections: vscode.Selection[] = editor?.selections || [];
 
-    // Default to the entire document
-    if (vsCodeHelper.nothingIsSelected()) {
-        selections = vsCodeHelper.selectAll();
-    }
+	// Default to the entire document
+	if (vsCodeHelper.nothingIsSelected()) {
+		selections = vsCodeHelper.selectAll();
+	}
 
-    // Filter all selections through CSS Block function
-    vsCodeHelper.replaceSelections(selections, sortCssBlock);
+	// Filter all selections through CSS Block function
+	vsCodeHelper.replaceSelections(selections, sortCssBlock);
 }

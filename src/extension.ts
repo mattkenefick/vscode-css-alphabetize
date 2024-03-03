@@ -8,16 +8,15 @@ import alphabetize from './functions/alphabetize';
  * @return void
  */
 export function activate(context: vscode.ExtensionContext) {
-    let disposable;
+	let disposable;
 
-    // region: Commands
-    // ---------------------------------------------------------------------------
+	// region: Commands
+	// ---------------------------------------------------------------------------
 
-    disposable = vscode.commands.registerCommand('css-alphabetize.alphabetize', () => alphabetize());
-    context.subscriptions.push(disposable);
+	disposable = vscode.commands.registerCommand('css-alphabetize.alphabetize', () => alphabetize());
+	context.subscriptions.push(disposable);
 
-    // endregion: Commands
-
+	// endregion: Commands
 }
 
 // this method is called when your extension is deactivated

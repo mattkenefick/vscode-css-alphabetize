@@ -12,36 +12,32 @@ import sortProperties from './sort-properties';
  * @param string closingBracket
  * @return string
  */
-export default function sortCssBlock(
-	css: string,
-	openingBracket: string = '{',
-	closingBracket: string = '}',
-): string {
-    let blocks = [];
-    let match;
+export default function sortCssBlock(css: string, openingBracket: string = '{', closingBracket: string = '}'): string {
+	let blocks = [];
+	let match;
 	let previousCss;
-    const identifiedIndentation = (css.match(/(^ +)/m) || ['    '])[0].length;
+	const identifiedIndentation = (css.match(/(^ +)/m) || ['    '])[0].length;
 
-    // Extract all blocks into an array
-    while (css.indexOf(openingBracket, 0) > -1) {
-        const key: number = blocks.length;
-        const block: string = findNearestBlock(css, openingBracket, closingBracket);
+	// Extract all blocks into an array
+	while (css.indexOf(openingBracket, 0) > -1) {
+		const key: number = blocks.length;
+		const block: string = findNearestBlock(css, openingBracket, closingBracket);
 
-        blocks.push(block);
+		blocks.push(block);
 
-        // Save position marker that we can defer to later for replacement
-        css = css.replace(`{${block}}`, `#!${key}`);
-    }
+		// Save position marker that we can defer to later for replacement
+		css = css.replace(`{${block}}`, `#!${key}`);
+	}
 
-    // Iterate through key markers
-    do {
-        if (match = css.match(/(?:#!)(\d+)/)) {
-            const index: number = parseFloat(match[1]);
-            const props = sortProperties(blocks[index]);
-            const closingIndentation = ' '.repeat(Math.max(0, props.indentation - identifiedIndentation));
-            css = css.replace('#!' + match[1], `{\n${props.block}\n${closingIndentation}}`);
-        }
-    } while (match);
+	// Iterate through key markers
+	do {
+		if ((match = css.match(/(?:#!)(\d+)/))) {
+			const index: number = parseFloat(match[1]);
+			const props = sortProperties(blocks[index]);
+			const closingIndentation = ' '.repeat(Math.max(0, props.indentation - identifiedIndentation));
+			css = css.replace('#!' + match[1], `{\n${props.block}\n${closingIndentation}}`);
+		}
+	} while (match);
 
 	do {
 		// Consecutive empty lines
@@ -57,5 +53,5 @@ export default function sortCssBlock(
 	// Empty lines trim
 	css = replaceAll(css, /^\s+$/gm, '');
 
-    return css;
+	return css;
 }
